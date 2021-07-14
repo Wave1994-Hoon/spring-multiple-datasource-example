@@ -1,6 +1,19 @@
 spring:
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&allowMultiQueries=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
+  master:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: 1234
+  slave:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: 1234
+
+
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari: DEBUG
