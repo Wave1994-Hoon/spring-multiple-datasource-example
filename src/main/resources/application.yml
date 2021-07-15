@@ -13,14 +13,14 @@ spring:
       password: 1234
 
   jpa:
-    open-in-view: false
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
+    show-sql: true
     properties:
       hibernate:
-        show_sql: true
         format_sql: true
-
+        use_sql_comments: true
 
 logging:
   level:

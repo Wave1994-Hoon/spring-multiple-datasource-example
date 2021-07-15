@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 import javax.sql.DataSource;
@@ -17,7 +16,6 @@ import java.util.Map;
 
 
 @Configuration
-@PropertySource("classpath:application.yml")
 @Slf4j
 public class DataSourceConfig {
 
@@ -25,6 +23,7 @@ public class DataSourceConfig {
 //    @Bean(name = "masterDataSource")
     @Bean(name = "writeDataSource")
     public DataSource masterDataSource() {
+        System.out.println(masterProperties().getUrl());
         return masterProperties().initializeDataSourceBuilder().build();
     }
 
@@ -65,7 +64,7 @@ public class DataSourceConfig {
         return routingDataSource;
     }
 
-    @Bean
+    @Bean(name = "dataSource")
     public DataSource dataSource(
             @Qualifier("routingDataSource") DataSource routingDataSource
     ) {
