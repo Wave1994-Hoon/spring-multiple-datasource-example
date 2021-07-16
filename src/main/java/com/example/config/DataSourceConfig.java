@@ -23,7 +23,6 @@ public class DataSourceConfig {
     @Bean(name = "masterDataSource")
 
     public DataSource masterDataSource() {
-        System.out.println(masterProperties().getUrl());
         return masterProperties().initializeDataSourceBuilder().build();
     }
 
