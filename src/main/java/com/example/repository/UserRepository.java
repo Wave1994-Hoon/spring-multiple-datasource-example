@@ -1,22 +1,8 @@
 package com.example.repository;
 
 import com.example.entity.User;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-@Repository
-public class UserRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-    public User findById(Integer id) {
-        return entityManager.find(User.class, id);
-    }
-
-    public void save(User user) {
-        entityManager.persist(user);
-    }
+public interface UserRepository extends JpaRepository<User, Long> {
 }

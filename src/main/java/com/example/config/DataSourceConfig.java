@@ -20,15 +20,14 @@ import java.util.Map;
 public class DataSourceConfig {
 
     @Primary
-//    @Bean(name = "masterDataSource")
-    @Bean(name = "writeDataSource")
+    @Bean(name = "masterDataSource")
+
     public DataSource masterDataSource() {
         System.out.println(masterProperties().getUrl());
         return masterProperties().initializeDataSourceBuilder().build();
     }
 
-//    @Bean(name = "slaveDataSource")
-    @Bean(name = "readDataSource")
+    @Bean(name = "slaveDataSource")
     public DataSource slaveDataSource() {
         return masterProperties().initializeDataSourceBuilder().build();
     }
@@ -48,18 +47,18 @@ public class DataSourceConfig {
 
     @Bean(name = "routingDataSource")
     public DataSource routingDataSource(
-            @Qualifier("writeDataSource") DataSource writeDataSource,
-            @Qualifier("readDataSource") DataSource readDataSource
+            @Qualifier("masterDataSource") DataSource masterDataSource,
+            @Qualifier("slaveDataSource") DataSource slaveDataSource
     ) {
         ReplicationRoutingDataSource routingDataSource = new ReplicationRoutingDataSource();
 
         Map<Object, Object> dataSourceMap = new HashMap<>();
 
-        dataSourceMap.put("write", writeDataSource);
-        dataSourceMap.put("read", readDataSource);
+        dataSourceMap.put("master", masterDataSource);
+        dataSourceMap.put("slave", slaveDataSource);
 
         routingDataSource.setTargetDataSources(dataSourceMap);
-        routingDataSource.setDefaultTargetDataSource(writeDataSource);
+        routingDataSource.setDefaultTargetDataSource(masterDataSource);
 
         return routingDataSource;
     }

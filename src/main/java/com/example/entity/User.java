@@ -1,8 +1,12 @@
 package com.example.entity;
 
+import lombok.Setter;
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
+@Setter @Getter
 @Table(name = "users")
 public class User {
 
@@ -28,30 +32,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
