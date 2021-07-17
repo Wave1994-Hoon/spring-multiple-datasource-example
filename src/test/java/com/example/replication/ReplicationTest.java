@@ -1,0 +1,60 @@
+package com.example.replication;
+
+import com.example.common.DataSourceType;
+import com.example.config.ReplicationRoutingDataSource;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+
+@SpringBootTest
+public class ReplicationTest {
+
+    private static final String Test_Method_Name = "determineCurrentLookupKey";
+
+    @Test
+    @DisplayName("Master_DataSource_테스트")
+    @Transactional(readOnly = false)
+    void masterDatasourceTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        // given
+        ReplicationRoutingDataSource replicationRoutingDataSource = new ReplicationRoutingDataSource();
+
+        // when
+        Method determineCurrentLookupKey = ReplicationRoutingDataSource.class.getDeclaredMethod(Test_Method_Name);
+        determineCurrentLookupKey.setAccessible(true);
+
+        DataSourceType dataSourceType = (DataSourceType) determineCurrentLookupKey
+                .invoke(replicationRoutingDataSource);
+
+        // then
+        assertThat(dataSourceType).isEqualTo(DataSourceType.Master);
+    }
+
+    @Test
+    @DisplayName("Slave_DataSource_테스트")
+    @Transactional(readOnly = true)
+    void slaveDatasourceTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        // given
+        ReplicationRoutingDataSource replicationRoutingDataSource = new ReplicationRoutingDataSource();
+
+        // when
+        Method determineCurrentLookupKey = ReplicationRoutingDataSource.class.getDeclaredMethod(Test_Method_Name);
+        determineCurrentLookupKey.setAccessible(true);
+
+        DataSourceType dataSourceType = (DataSourceType) determineCurrentLookupKey
+                .invoke(replicationRoutingDataSource);
+
+        // then
+        assertThat(dataSourceType).isEqualTo(DataSourceType.Slave);
+
+    }
+
+}

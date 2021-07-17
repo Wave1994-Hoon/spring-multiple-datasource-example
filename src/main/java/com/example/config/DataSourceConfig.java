@@ -1,6 +1,7 @@
 package com.example.config;
 
 
+import com.example.common.DataSourceType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -9,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
-
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,6 @@ public class DataSourceConfig {
 
     @Primary
     @Bean(name = "masterDataSource")
-
     public DataSource masterDataSource() {
         return masterProperties().initializeDataSourceBuilder().build();
     }
@@ -31,8 +30,8 @@ public class DataSourceConfig {
         return masterProperties().initializeDataSourceBuilder().build();
     }
 
-    @Bean
     @Primary
+    @Bean
     @ConfigurationProperties(prefix = "spring.master.datasource")
     public DataSourceProperties masterProperties() {
         return new DataSourceProperties();
@@ -46,15 +45,16 @@ public class DataSourceConfig {
 
     @Bean(name = "routingDataSource")
     public DataSource routingDataSource(
-            @Qualifier("masterDataSource") DataSource masterDataSource,
-            @Qualifier("slaveDataSource") DataSource slaveDataSource
+            @Qualifier("masterDataSource") final DataSource masterDataSource,
+            @Qualifier("slaveDataSource") final DataSource slaveDataSource
     ) {
+
         ReplicationRoutingDataSource routingDataSource = new ReplicationRoutingDataSource();
 
         Map<Object, Object> dataSourceMap = new HashMap<>();
 
-        dataSourceMap.put("master", masterDataSource);
-        dataSourceMap.put("slave", slaveDataSource);
+        dataSourceMap.put(DataSourceType.Master, masterDataSource);
+        dataSourceMap.put(DataSourceType.Slave, slaveDataSource);
 
         routingDataSource.setTargetDataSources(dataSourceMap);
         routingDataSource.setDefaultTargetDataSource(masterDataSource);

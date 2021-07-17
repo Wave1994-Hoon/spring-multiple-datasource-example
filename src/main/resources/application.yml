@@ -8,7 +8,7 @@ spring:
   slave:
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&allowMultiQueries=true&serverTimezone=UTC
+      url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?serverTimezone=UTC
       username: root
       password: 1234
 
@@ -22,9 +22,9 @@ spring:
         use_sql_comments: true
 
 # For Debug
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type: TRACE
-    com.zaxxer.hikari.HikariConfig: DEBUG
-    com.zaxxer.hikari: TRACE
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type: TRACE
+#    com.zaxxer.hikari.HikariConfig: DEBUG
+#    com.zaxxer.hikari: TRACE
