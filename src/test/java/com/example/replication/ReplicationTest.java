@@ -1,7 +1,7 @@
 package com.example.replication;
 
 import com.example.common.DataSourceType;
-import com.example.config.ReplicationRoutingDataSource;
+import com.example.config.replication.ReplicationRoutingDataSource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +19,9 @@ public class ReplicationTest {
     private static final String Test_Method_Name = "determineCurrentLookupKey";
 
     @Test
-    @DisplayName("Master_DataSource_테스트")
+    @DisplayName("쓰기_전용_트랜잭션_테스트")
     @Transactional(readOnly = false)
-    void masterDatasourceTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void writeOnlyTransactionTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         // given
         ReplicationRoutingDataSource replicationRoutingDataSource = new ReplicationRoutingDataSource();
@@ -38,9 +38,9 @@ public class ReplicationTest {
     }
 
     @Test
-    @DisplayName("Slave_DataSource_테스트")
+    @DisplayName("읽기_전용_트랜잭션_테스트")
     @Transactional(readOnly = true)
-    void slaveDatasourceTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void readOnlyTransactionTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         // given
         ReplicationRoutingDataSource replicationRoutingDataSource = new ReplicationRoutingDataSource();

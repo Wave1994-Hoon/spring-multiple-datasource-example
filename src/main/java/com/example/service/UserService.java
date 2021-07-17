@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
     public List<User> findAllUser() {
