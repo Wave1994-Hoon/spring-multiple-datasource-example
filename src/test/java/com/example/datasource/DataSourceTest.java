@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
-
 import javax.sql.DataSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest
 public class DataSourceTest {
@@ -24,7 +24,7 @@ public class DataSourceTest {
             @Qualifier("masterDataSource") final DataSource masterDataSource
     ) {
         // given
-        String url = environment.getProperty("spring.datasource.master..hikari.jdbc-url");
+        String url = environment.getProperty("spring.datasource.master.hikari.jdbc-url");
         String username = environment.getProperty("spring.datasource.master.hikari.username");
         String driverClassName = environment.getProperty("spring.datasource.master.hikari.driver-class-name");
         Boolean readOnly = Boolean.valueOf(environment.getProperty("spring.datasource.master.hikari.read-only"));
