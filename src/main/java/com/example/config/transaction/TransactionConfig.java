@@ -60,21 +60,7 @@ public class TransactionConfig {
     @Bean
     public PlatformTransactionManager transactionManager(
             @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory
-//            @Qualifier("dataSource") DataSource dataSource
     ) {
-        // JPA
-//        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-//        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
-//
-//        // MyBatis
-//        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-//        dataSourceTransactionManager.setDataSource(dataSource);
-//
-//        // creates chained transaction manager
-//        ChainedTransactionManager transactionManager = new ChainedTransactionManager(jpaTransactionManager, dataSourceTransactionManager);
-//        return transactionManager;
-
-
         return new JpaTransactionManager(entityManagerFactory);
     }
 

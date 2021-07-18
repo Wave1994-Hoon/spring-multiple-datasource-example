@@ -9,4 +9,5 @@
     <select id="findAll" resultType="com.example.entity.User">
         SELECT * FROM users
     </select>
+
 </mapper>
