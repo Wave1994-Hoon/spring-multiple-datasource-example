@@ -27,12 +27,13 @@ public class DataSourceTest {
         String url = environment.getProperty("spring.datasource.master..hikari.jdbc-url");
         String username = environment.getProperty("spring.datasource.master.hikari.username");
         String driverClassName = environment.getProperty("spring.datasource.master.hikari.driver-class-name");
+        Boolean readOnly = Boolean.valueOf(environment.getProperty("spring.datasource.master.hikari.read-only"));
 
         // when
         HikariDataSource hikariDataSource = (HikariDataSource) masterDataSource;
 
         // then
-        verifyOf(url, username, driverClassName, hikariDataSource);
+        verifyOf(readOnly, url, username, driverClassName, hikariDataSource);
 
     }
 
@@ -45,18 +46,19 @@ public class DataSourceTest {
         String url = environment.getProperty("spring.datasource.slave.hikari.jdbc-url");
         String username = environment.getProperty("spring.datasource.slave.hikari.username");
         String driverClassName = environment.getProperty("spring.datasource.slave.hikari.driver-class-name");
+        Boolean readOnly = Boolean.valueOf(environment.getProperty("spring.datasource.slave.hikari.read-only"));
 
         // when
         HikariDataSource hikariDataSource = (HikariDataSource) slaveDataSource;
 
 
         // then
-        verifyOf(url, username, driverClassName, hikariDataSource);
+        verifyOf(readOnly, url, username, driverClassName, hikariDataSource);
 
     }
 
-    private void verifyOf(String url, String username, String driverClassName, HikariDataSource hikariDataSource) {
-        assertThat(hikariDataSource.isReadOnly()).isFalse();
+    private void verifyOf(Boolean readOnly, String url, String username, String driverClassName, HikariDataSource hikariDataSource) {
+        assertThat(hikariDataSource.isReadOnly()).isEqualTo(readOnly);
         assertThat(hikariDataSource.getJdbcUrl()).isEqualTo(url);
         assertThat(hikariDataSource.getUsername()).isEqualTo(username);
         assertThat(hikariDataSource.getDriverClassName()).isEqualTo(driverClassName);
