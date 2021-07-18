@@ -1,4 +1,4 @@
-package com.example.replication;
+package com.example.datasource;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.DisplayName;

@@ -18,7 +18,6 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    //
     @Transactional(readOnly = true)
     public List<User> findAllUserUsingJpa() {
         return userRepository.findAll();

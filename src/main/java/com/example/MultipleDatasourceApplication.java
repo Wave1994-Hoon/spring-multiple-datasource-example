@@ -17,23 +17,38 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MultipleDatasourceApplication {
 
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+//    private final UserRepository userRepository;
+//
+//    private final UserMapper userMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(MultipleDatasourceApplication.class, args);
     }
 
     @PostConstruct
-    @Transactional(readOnly = true)
+    @Transactional
     public void init() {
-        User user1 = new User();
-        user1.setName("111");
+//        User user1 = new User();
+//        user1.setName("111");
+//
+//        User user2 = new User();
+//        user2.setName("222");
+//
+//        userRepository.save(user1);
+//        userRepository.save(user2);
+//
+//        System.out.println("----------");
+//
+//        List<User> all = userRepository.findAll();
+//        for (User user : all) {
+//            System.out.println(user.getName());
+//        }
+//        System.out.println("----------");
+//        List<User> all1 = userMapper.findAll();
+//
+//        for (User user : all1) {
+//            System.out.println(user.getName());
+//        }
 
-        User user2 = new User();
-        user2.setName("222");
-
-        userRepository.save(user1);
-        userRepository.save(user2);
     }
 }

@@ -2,7 +2,9 @@ package com.example.mapper;
 
 import com.example.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,4 +13,6 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> findAll();
+
+    int saveUser(@Param("name") String name);
 }

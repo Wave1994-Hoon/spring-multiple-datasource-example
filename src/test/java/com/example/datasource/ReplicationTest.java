@@ -1,4 +1,4 @@
-package com.example.replication;
+package com.example.datasource;
 
 import com.example.common.DataSourceType;
 import com.example.config.replication.ReplicationRoutingDataSource;
