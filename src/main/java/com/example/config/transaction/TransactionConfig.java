@@ -28,7 +28,7 @@ import javax.sql.DataSource;
 )
 @EnableTransactionManagement
 @EnableJpaAuditing
-public class JpaTransactionConfig {
+public class TransactionConfig {
 
     @Primary
     @Bean

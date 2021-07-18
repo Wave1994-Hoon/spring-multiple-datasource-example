@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.entity.User;
+import com.example.mapper.UserMapper;
 import com.example.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
@@ -16,13 +18,14 @@ import javax.annotation.PostConstruct;
 public class MultipleDatasourceApplication {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(MultipleDatasourceApplication.class, args);
     }
 
     @PostConstruct
-    @Transactional
+    @Transactional(readOnly = true)
     public void init() {
         User user1 = new User();
         user1.setName("111");
