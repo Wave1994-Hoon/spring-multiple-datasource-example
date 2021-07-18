@@ -37,18 +37,5 @@ public class MultipleDatasourceApplication {
         userRepository.save(user1);
         userRepository.save(user2);
 
-        System.out.println("----------");
-
-        List<User> all = userRepository.findAll();
-        for (User user : all) {
-            System.out.println(user.getName());
-        }
-        System.out.println("----------");
-        List<User> all1 = userMapper.findAll();
-
-        for (User user : all1) {
-            System.out.println(user.getName());
-        }
-
     }
 }
