@@ -21,7 +21,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        hbm2ddl.auto: create
+        hbm2ddl.auto: none
         format_sql: true
 
 # For Debug
