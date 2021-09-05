@@ -11,9 +11,6 @@ public class ReplicationRoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         DataSourceType dataSourceType = TransactionSynchronizationManager.isCurrentTransactionReadOnly() ? DataSourceType.Slave : DataSourceType.Master;
-        String transactionName = TransactionSynchronizationManager.getCurrentTransactionName();
-
-        log.info("transaction : {}", transactionName);
         log.info("current dataSourceType : {}", dataSourceType);
 
         return dataSourceType;

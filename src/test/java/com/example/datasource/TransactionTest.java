@@ -124,7 +124,7 @@ public class TransactionTest {
         }
 
         Optional<User> user = userRepository.findUserByName(Test_User_Name);
-        System.out.println(user);
+
         // then
         assertThatExceptionOfType(NoSuchElementException.class)
                 .isThrownBy(user::get)

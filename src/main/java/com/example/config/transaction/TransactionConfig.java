@@ -28,13 +28,8 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager",
-        basePackages = {"com.example.repository"}
-)
 @EnableTransactionManagement
-@EnableJpaAuditing
+//@EnableJpaAuditing
 public class TransactionConfig {
 
     @Primary
