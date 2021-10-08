@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DataSourceTest {
 
     @Autowired
-    private Environment environment;
+    Environment environment;
 
     @Test
     @DisplayName("Master_DataSource_테스트")

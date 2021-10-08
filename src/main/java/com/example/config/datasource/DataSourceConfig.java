@@ -10,10 +10,9 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
-
 @Configuration
 @Slf4j
-public class MasterDataSourceConfig {
+public class DataSourceConfig {
 
     @Primary
     @Bean(name = "masterDataSource")
@@ -24,4 +23,11 @@ public class MasterDataSourceConfig {
                 .build();
     }
 
+    @Bean(name = "slaveDataSource")
+    @ConfigurationProperties(prefix="spring.datasource.slave.hikari")
+    public DataSource slaveDataSource() {
+        return DataSourceBuilder.create()
+                .type(HikariDataSource.class)
+                .build();
+    }
 }

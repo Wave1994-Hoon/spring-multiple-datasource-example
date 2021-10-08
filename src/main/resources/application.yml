@@ -6,7 +6,7 @@ spring:
         jdbc-url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&allowMultiQueries=true&serverTimezone=UTC
         read-only: false
         username: root
-        password: 1234
+        password:
 
     slave:
       hikari:
@@ -14,7 +14,7 @@ spring:
         jdbc-url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?serverTimezone=UTC
         read-only: true
         username: root
-        password: 1234
+        password:
 
   jpa:
     open-in-view: false
