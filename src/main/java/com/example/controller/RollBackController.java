@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 
-
 @RestController
 @Transactional
 @RequiredArgsConstructor
 public class RollBackController {
 
     private final UserRepository userRepository;
-
     private final UserMapper userMapper;
+
 
     @PostMapping("/jpa/rollback")
     public ResponseEntity<User> checkJpaTransactionRollBack(
@@ -61,4 +60,5 @@ public class RollBackController {
         userMapper.saveUser(username);
         return ResponseEntity.ok().build();
     }
+
 }

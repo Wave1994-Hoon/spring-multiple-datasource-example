@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-@Slf4j
 public class DataSourceConfig {
 
     @Primary

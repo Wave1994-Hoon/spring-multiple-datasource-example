@@ -4,15 +4,15 @@ spring:
       hikari:
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?serverTimezone=UTC
-        read-only: false
+#        read-only: false
         username: root
         password:
 
     slave:
       hikari:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://127.0.0.1:3306/multiple-datesource?serverTimezone=UTC
-        read-only: true
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/multiple_datasource2?serverTimezone=UTC
+#        read-only: true
         username: root
         password:
 

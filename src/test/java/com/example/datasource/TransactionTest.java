@@ -47,8 +47,8 @@ public class TransactionTest {
 
         // when
         mockMvc.perform(post("/jpa")
-                .param("username", Test_User_Name)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .param("username", Test_User_Name)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
         ;
 
@@ -68,8 +68,8 @@ public class TransactionTest {
         // when
         try {
             mockMvc.perform(post("/jpa/rollback")
-                    .param("username", Test_User_Name)
-                    .contentType(MediaType.APPLICATION_JSON))
+                            .param("username", Test_User_Name)
+                            .contentType(MediaType.APPLICATION_JSON))
                     .andReturn()
             ;
 
@@ -93,8 +93,8 @@ public class TransactionTest {
 
         // when
         mockMvc.perform(post("/mybatis")
-                .param("username", Test_User_Name)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .param("username", Test_User_Name)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
         ;
 
@@ -114,8 +114,8 @@ public class TransactionTest {
         // when
         try {
             mockMvc.perform(post("/mybatis/rollback")
-                    .param("username", Test_User_Name)
-                    .contentType(MediaType.APPLICATION_JSON))
+                            .param("username", Test_User_Name)
+                            .contentType(MediaType.APPLICATION_JSON))
                     .andReturn()
             ;
 

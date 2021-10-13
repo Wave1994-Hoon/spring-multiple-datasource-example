@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +14,11 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnClass(SqlSessionFactoryBean.class)
-@MapperScan(value = "com.example.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(
+        value = "com.example.mapper",
+        sqlSessionFactoryRef = "sqlSessionFactory",
+        sqlSessionTemplateRef = "sqlSession"
+)
 public class MyBatisConfig {
 
     @Bean
